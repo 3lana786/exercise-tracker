@@ -1,69 +1,42 @@
-import "./App.css";
-import MenuApp from "./components/MenuApp";
+import React from "react";
+
+const menu = [
+  {
+    menuName: "Dinner",
+    menuItems: [
+      {
+        itemId: 1,
+        itemName: "Lasagne",
+        itemPrice: "12",
+        itemDescription: "Meat and cheese layered pasta."
+      },
+      {
+        itemId: 2,
+        itemName: "Cheese Ravioli",
+        itemPrice: "10",
+        itemDescription: "Cheese-filled ravioli with sauce."
+      }
+    ]
+  }
+];
 
 function App() {
-  let menuData = [
-    {
-      menuName: "Dinner",
-      menuItems: [
-        {
-          itemId: 1,
-          itemPrice: "12",
-          itemName: "Lasagne",
-          itemDescription:
-            "Meat and cheese layered between house-made pasta with bell peppers and onions.",
-        },
-        {
-          itemId: 2,
-          itemPrice: "10",
-          itemName: "Cheese Ravioli",
-          itemDescription: "Cheese-filled ravioli served with house red sauce.",
-        },
-        {
-          itemId: 3,
-          itemPrice: "14",
-          itemName: "Chicken Parmesan",
-          itemDescription:
-            "Breaded chicken topped with marinara sauce and lots of cheese served over house made spaghetti.",
-        },
-      ],
-    },
-    {
-      menuName: "Dessert",
-      menuItems: [
-        {
-          itemId: 45,
-          itemPrice: "10",
-          itemName: "Chocolate Lava Cake",
-          itemDescription: "Dark chocolate molten lava cake. Serves 2-3.",
-        },
-        {
-          itemId: 47,
-          itemPrice: "8",
-          itemName: "Tiramisu",
-          itemDescription:
-            "Layers of espresso-soaked ladyfingers and marscarpone cream topped with cocoa and espresso powder.",
-        },
-        {
-          itemId: 49,
-          itemPrice: "5",
-          itemName: "Cannolis",
-          itemDescription:
-            "Three flaky pastries enclosing a rich, ricotta filling dotted with decadent chocolate chips.",
-        },
-        {
-          itemId: 50,
-          itemPrice: "5",
-          itemName: "Cappuccino",
-          itemDescription: "Steamed milk with two ristretto shots of espresso.",
-        },
-      ],
-    },
-  ];
-
   return (
-    <div className="App">
-      <MenuApp data={menuData} />
+    <div style={{padding:"20px"}}>
+      <h1>Restaurant Menu</h1>
+
+      {menu.map(section => (
+        <div key={section.menuName}>
+          <h2>{section.menuName}</h2>
+
+          {section.menuItems.map(item => (
+            <div key={item.itemId}>
+              <h3>{item.itemName} - ${item.itemPrice}</h3>
+              <p>{item.itemDescription}</p>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
